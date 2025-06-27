@@ -17,9 +17,9 @@ export class NoteService {
 
   constructor(private http: Http) {}
 
-  getNotes(sort: string): Observable<Note[]> {
+  getNotes(sort: string, page: number, size: number): Observable<Note[]> {
     return this.http
-      .get(this.baseUrl + `?sort=${sort}`)
+      .get(this.baseUrl + `?sort=${sort}&page=${page}&size=${size}`)
       .map((res: Response): Note[] => res.json() as Note[])
       .catch(this.handleError);
   }

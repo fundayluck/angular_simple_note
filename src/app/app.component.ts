@@ -12,6 +12,9 @@ export class AppComponent {
   noteText: string = "";
   sortOrder: string = "newest";
   sortValue: boolean = true;
+  currentPage: number = 1;
+  pageSize: number = 5;
+  totalCount: number = 0;
 
   constructor(private noteService: NoteService) {}
 
@@ -20,9 +23,12 @@ export class AppComponent {
   }
 
   loadNotes() {
-    this.noteService.getNotes(this.sortOrder).subscribe((data: any) => {
-      this.notes = data.data;
-    });
+    this.noteService
+      .getNotes(this.sortOrder, this.currentPage - 1, this.pageSize)
+      .subscribe((res: any) => {
+        this.notes = res.data;
+        this.totalCount = res.totalItems;
+      });
   }
 
   addNote() {
@@ -46,5 +52,16 @@ export class AppComponent {
   onToggleSort() {
     this.sortOrder = this.sortValue ? "newest" : "oldest";
     this.loadNotes();
+  }
+
+  changePage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.loadNotes();
+    }
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.totalCount / this.pageSize);
   }
 }
