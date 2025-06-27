@@ -3,6 +3,7 @@ import { Http, Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
+import { environment } from "./environment/environment";
 declare var swal: any;
 
 export interface Note {
@@ -13,7 +14,7 @@ export interface Note {
 
 @Injectable()
 export class NoteService {
-  private baseUrl = "http://localhost:8000/api/v1/notes";
+  private baseUrl = environment.apiBaseUrl + "/api/v1/notes";
 
   constructor(private http: Http) {}
 
