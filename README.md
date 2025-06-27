@@ -20,6 +20,10 @@ npm install
 
 # Start the development server
 npm start
+
+# version
+node => v18.18.2
+npm => 9.8.1
 ```
 
 # contoh aplikasinya
