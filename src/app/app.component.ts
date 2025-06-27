@@ -43,9 +43,27 @@ export class AppComponent {
     });
   }
 
-  deleteNote(noteId: String) {
-    this.noteService.deleteNote(noteId).subscribe(() => {
-      this.notes = this.notes.filter((n) => n.id !== noteId);
+  deleteNote(noteId: string) {
+    swal({
+      title: "Are you sure?",
+      text: "This note will be permanently deleted.",
+      icon: "warning",
+      buttons: ["Cancel", "Delete"],
+      dangerMode: true,
+    }).then((willDelete: boolean) => {
+      if (willDelete) {
+        this.noteService.deleteNote(noteId).subscribe(() => {
+          if (this.notes.length === 1 && this.currentPage > 1) {
+            this.currentPage--;
+          }
+
+          this.loadNotes();
+
+          swal("Note deleted successfully!", {
+            icon: "success",
+          });
+        });
+      }
     });
   }
 
