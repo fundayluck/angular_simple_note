@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { Note, NoteService } from "./note.service";
+import { NoteService } from "./note.service";
+import { Note, NoteResponse } from "./type/type";
 
 declare var swal: any;
 
@@ -25,7 +26,7 @@ export class AppComponent {
   loadNotes() {
     this.noteService
       .getNotes(this.sortOrder, this.currentPage - 1, this.pageSize)
-      .subscribe((res: any) => {
+      .subscribe((res: NoteResponse) => {
         this.notes = res.data;
         this.totalCount = res.totalItems;
       });

@@ -4,13 +4,9 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import { environment } from "./environment/environment";
-declare var swal: any;
+import { Note, NoteResponse } from "./type/type";
 
-export interface Note {
-  id?: String;
-  content: string;
-  createdAt?: string;
-}
+declare var swal: any;
 
 @Injectable()
 export class NoteService {
@@ -18,10 +14,10 @@ export class NoteService {
 
   constructor(private http: Http) {}
 
-  getNotes(sort: string, page: number, size: number): Observable<Note[]> {
+  getNotes(sort: string, page: number, size: number): Observable<NoteResponse> {
     return this.http
       .get(this.baseUrl + `?sort=${sort}&page=${page}&size=${size}`)
-      .map((res: Response): Note[] => res.json() as Note[])
+      .map((res: Response): NoteResponse => res.json() as NoteResponse)
       .catch(this.handleError);
   }
 
