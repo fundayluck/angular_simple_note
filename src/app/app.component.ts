@@ -10,6 +10,8 @@ declare var swal: any;
 export class AppComponent {
   notes: Note[] = [];
   noteText: string = "";
+  sortOrder: string = "newest";
+  sortValue: boolean = true;
 
   constructor(private noteService: NoteService) {}
 
@@ -18,7 +20,7 @@ export class AppComponent {
   }
 
   loadNotes() {
-    this.noteService.getNotes().subscribe((data: any) => {
+    this.noteService.getNotes(this.sortOrder).subscribe((data: any) => {
       this.notes = data.data;
     });
   }
@@ -39,5 +41,10 @@ export class AppComponent {
     this.noteService.deleteNote(noteId).subscribe(() => {
       this.notes = this.notes.filter((n) => n.id !== noteId);
     });
+  }
+
+  onToggleSort() {
+    this.sortOrder = this.sortValue ? "newest" : "oldest";
+    this.loadNotes();
   }
 }

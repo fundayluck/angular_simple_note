@@ -2,12 +2,13 @@ import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
-import 'rxjs/add/operator/catch';
+import "rxjs/add/operator/catch";
 declare var swal: any;
 
 export interface Note {
   id?: String;
   content: string;
+  createdAt?: string;
 }
 
 @Injectable()
@@ -16,9 +17,9 @@ export class NoteService {
 
   constructor(private http: Http) {}
 
-  getNotes(): Observable<Note[]> {
+  getNotes(sort: string): Observable<Note[]> {
     return this.http
-      .get(this.baseUrl)
+      .get(this.baseUrl + `?sort=${sort}`)
       .map((res: Response): Note[] => res.json() as Note[])
       .catch(this.handleError);
   }

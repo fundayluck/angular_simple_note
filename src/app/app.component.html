@@ -3,7 +3,7 @@
     <div class="card-body">
       <h3 class="card-title text-center mb-4">📝 Simple Notes</h3>
 
-      <div class="form-group">
+      <div class="form-group mb-3">
         <input
           [(ngModel)]="noteText"
           class="form-control"
@@ -11,7 +11,7 @@
         />
       </div>
 
-      <div class="text-right">
+      <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
         <button (click)="addNote()" class="btn btn-primary">
           Tambah Catatan
         </button>
@@ -19,12 +19,31 @@
     </div>
   </div>
 
+  <div class="form-check form-switch mt-3">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      id="sortSwitch"
+      [(ngModel)]="sortValue"
+      (change)="onToggleSort()"
+    />
+    <label class="form-check-label" for="sortSwitch">
+      {{ sortValue ? "newest" : "oldest" }}
+    </label>
+  </div>
+
   <ul class="list-group mt-4 shadow-sm">
     <li
       *ngFor="let note of notes"
       class="list-group-item d-flex justify-content-between align-items-center"
     >
-      {{ note.content }}
+      <div>
+        <div>{{ note.content }}</div>
+        <small class="text-muted">
+          {{ note.createdAt | date : "dd MMM yyyy, HH:mm" }}
+        </small>
+      </div>
+
       <button (click)="deleteNote(note.id)" class="btn btn-danger btn-sm">
         🗑️ Hapus
       </button>
