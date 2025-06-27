@@ -1,0 +1,43 @@
+# Compiled output
+dist/
+tmp/
+out-tsc/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# IDE / Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Angular specific
+.angular/cache/
+.angular/
+
+# Coverage
+coverage/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*.local
+
+# Others
+*.swp
+*.bak
+*.tmp
+*.orig
