@@ -25,7 +25,7 @@ export class AppComponent {
 
   loadNotes() {
     this.noteService
-      .getNotes(this.sortOrder, this.currentPage - 1, this.pageSize)
+      .getNotes(this.sortOrder, this.currentPage, this.pageSize)
       .subscribe((res: NoteResponse) => {
         this.notes = res.data;
         this.totalCount = res.totalItems;
