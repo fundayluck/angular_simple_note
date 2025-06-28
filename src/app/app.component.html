@@ -8,6 +8,7 @@
           [(ngModel)]="noteText"
           class="form-control"
           placeholder="Tulis catatan kamu..."
+          (keydown.enter)="addNote()"
         />
       </div>
 
