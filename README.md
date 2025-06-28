@@ -27,5 +27,6 @@ npm => 9.8.1
 ```
 
 # contoh aplikasinya
+![img.png](img.png)
 
 ![alt text](image.png)
