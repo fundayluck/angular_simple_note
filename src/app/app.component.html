@@ -50,6 +50,9 @@
       </button>
     </li>
   </ul>
+  <div *ngIf="notes.length === 0" class="text-center mt-4 text-muted">
+        Tidak ada catatan.
+  </div>
 </div>
 
 <nav *ngIf="totalPages > 1" class="mt-4">
